@@ -70,7 +70,41 @@ public class BallDemo
         }
     }
     
-      public void bounce(int amount)
+    public void bounce(int amount)
+    {
+        int ground = 400;   // position of the ground line        
+        myCanvas.setVisible(true);       
+        // draw the ground
+        myCanvas.drawLine(50, ground, 550, ground);        
+        // crate and show the balls 
+        
+        Random rand = new Random();        
+        ArrayList<BouncingBall> balls = new ArrayList<>();
+        Color color;
+        
+        for (int i = 0; i <amount; i++)
+        {
+            color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)); 
+            balls.add(new BouncingBall(rand.nextInt(300), rand.nextInt(400), rand.nextInt(50), color, ground, myCanvas));
+            balls.get(i).draw();
+        }
+
+        // make them bounce
+        boolean finished =  false;
+        while(!finished) {
+            myCanvas.wait(50);           // small delay
+             for (BouncingBall ball: balls)
+            {
+                ball.move();
+                 if(ball.getXPosition() >= 550 ) 
+                {
+                    finished = true;
+                }
+            }               
+        }
+    }
+    
+    public void boxBounce(int amount)
     {
         int ground = 400;   // position of the ground line        
         myCanvas.setVisible(true);       
