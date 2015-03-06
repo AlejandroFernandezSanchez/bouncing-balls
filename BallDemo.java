@@ -121,8 +121,9 @@ public class BallDemo
         
         for (int i = 0; i <amount; i++)
         {
+            int diametro = 5 + rand.nextInt(10);
             color = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)); 
-            balls.add(new BoxBall(200+rand.nextInt(100), 250+rand.nextInt(50), 5+rand.nextInt(10), color, ground, myCanvas));
+            balls.add(new BoxBall(200+rand.nextInt(100-diametro), 250+rand.nextInt(50-diametro), diametro, color, ground, myCanvas));
             balls.get(i).draw();
         }
         
