@@ -84,7 +84,7 @@ public class BallDemo
         
         for (int i = 0; i <amount; i++)
         {
-            color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)); 
+            color = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)); 
             balls.add(new BouncingBall(rand.nextInt(300), rand.nextInt(400), rand.nextInt(50), color, ground, myCanvas));
             balls.get(i).draw();
         }
