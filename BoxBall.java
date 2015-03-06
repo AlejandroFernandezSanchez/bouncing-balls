@@ -95,7 +95,7 @@ public class BoxBall
         draw();
     }    
     
-    public void moveInBox(int derecha, int abajo, int izquierda, int arriba)
+    public void moveInBox(int izquierda, int abajo, int derecha, int arriba)
     {
           // remove from canvas at the current position
         erase();
@@ -120,25 +120,29 @@ public class BoxBall
             yPosition -= 1;
         }
 
-        // check if it has hit the ground
-        if(xPosition <= derecha) 
+        // check if it has hit the limits
+        if(xPosition + + diameter == derecha) 
         {
-            xInvert = true;
+            invertX = true;
+            xPosition -= 1;
         }
         
-         if(xPosition <= izquierda) 
+         if(xPosition == izquierda) 
         {
-            xInvert = false;
+            invertX = false;
+            xPosition += 1;
         }
         
-          if(yPosition <= arriba) 
+          if(yPosition == arriba) 
         {
-            yInvert = false;
+            invertY = false;
+            yPosition += 1;
         }
         
-           if(yPosition <= abajo) 
+           if(yPosition + diameter == abajo) 
         {
-            yInvert = false;
+            invertY = true;
+            yPosition -= 1;
         }
 
         // draw again at new position
