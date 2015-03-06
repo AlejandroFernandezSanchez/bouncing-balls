@@ -108,41 +108,35 @@ public class BallDemo
     {
         int ground = 400;   // position of the ground line        
         myCanvas.setVisible(true);       
-        // draw the ground
-        myCanvas.drawLine(50, ground, 550, ground);        
-        // crate and show the balls 
+        // draw the rectangle
+        myCanvas.drawLine(200, 300, 300, 300);
+        myCanvas.drawLine(300, 300, 300, 250); 
+        myCanvas.drawLine(300, 250, 200, 250); 
+        myCanvas.drawLine(200, 250, 200, 300); 
+        // create and show the balls 
         
         Random rand = new Random();        
-        ArrayList<BouncingBall> balls = new ArrayList<>();
+        ArrayList<BoxBall> balls = new ArrayList<>();
         Color color;
         
         for (int i = 0; i <amount; i++)
         {
-            color = new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)); 
-            balls.add(new BouncingBall(rand.nextInt(300), rand.nextInt(400), rand.nextInt(50), color, ground, myCanvas));
+            color = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256)); 
+            balls.add(new BoxBall(200+rand.nextInt(100), 250+rand.nextInt(50), rand.nextInt(30), color, ground, myCanvas));
+            balls.get(i).draw();
         }
         
-        for (BouncingBall ball: balls)
-        {
-            ball.draw();
-        }
-
-        // make them bounce
         boolean finished =  false;
         while(!finished) {
             myCanvas.wait(50);           // small delay
-             for (BouncingBall ball: balls)
+             for (BoxBall ball: balls)
             {
-                ball.move();
-            }
-            // stop once some ball has travelled a certain distance on x axis 
-            for (BouncingBall ball: balls)
-            {
-                if(ball.getXPosition() >= 550 ) 
+                ball.moveInBox(200, 300, 300, 250);
+                 if(ball.getXPosition() >= 550 ) 
                 {
                     finished = true;
                 }
-            }     
+            }               
         }
     }
 }

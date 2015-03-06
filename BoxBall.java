@@ -28,7 +28,9 @@ public class BoxBall
     private int yPosition;
     private final int groundPosition;      // y position of ground
     private Canvas canvas;
-    private int ySpeed = 1;                // initial downward speed
+    private int ySpeed = 1;     
+    private boolean invertX;
+    private boolean invertY;// initial downward speed
 
     /**
      * Constructor for objects of class BoxBall
@@ -49,6 +51,8 @@ public class BoxBall
         diameter = ballDiameter;
         groundPosition = groundPos;
         canvas = drawingCanvas;
+        invertX = false;
+        invertY = false;
     }
 
     /**
@@ -78,7 +82,7 @@ public class BoxBall
             
         // compute new position
         ySpeed += 1;
-        yPosition += ySpeed;
+        yPosition += 1;
         xPosition +=2;
 
         // check if it has hit the ground
@@ -90,6 +94,56 @@ public class BoxBall
         // draw again at new position
         draw();
     }    
+    
+    public void moveInBox(int derecha, int abajo, int izquierda, int arriba)
+    {
+          // remove from canvas at the current position
+        erase();
+            
+        // compute new position
+        
+        if (!invertX)
+        {
+            xPosition += 1;
+        }
+        else 
+        {
+            xPosition -= 1;
+        }
+                     
+        if (!invertY)
+        {
+            yPosition += 1;
+        }
+        else 
+        {
+            yPosition -= 1;
+        }
+
+        // check if it has hit the ground
+        if(xPosition <= derecha) 
+        {
+            xInvert = true;
+        }
+        
+         if(xPosition <= izquierda) 
+        {
+            xInvert = false;
+        }
+        
+          if(yPosition <= arriba) 
+        {
+            yInvert = false;
+        }
+        
+           if(yPosition <= abajo) 
+        {
+            yInvert = false;
+        }
+
+        // draw again at new position
+        draw();
+    }
 
     /**
      * return the horizontal position of this ball
